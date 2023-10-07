@@ -126,3 +126,15 @@
 - `docker run -p 5000:5000 -e FLASK_DEBUG=0 abhi94n/car_hire_management:latest`
   - `FLASK_DEBUG=0` - for production using gunicron
   - `FLASK_DEBUG=1` - for debugging and development
+
+### Option 3 Docker Compose
+
+1. Navigate to `docker/` directory
+
+2. Start up docker compose
+
+- `docker compose up`
+
+3. Stop and remove containers
+
+- `docker compose down`
