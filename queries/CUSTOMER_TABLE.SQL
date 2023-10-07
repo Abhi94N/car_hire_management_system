@@ -1,0 +1,34 @@
+USE CAR_HIRE_MANAGEMENT;
+SHOW TABLES;
+
+DROP TABLE IF EXISTS CUSTOMER;
+CREATE TABLE CUSTOMER (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+);
+
+SELECT * FROM CUSTOMER;
+
+
+SELECT * FROM CUSTOMER;
+
+## CRUD
+### CREATE
+
+INSERT INTO CUSTOMER (name, phone_number, email) VALUES ('Abhilash Nair', '404-202-5249', "abhilashnair1994@gmail.com");
+
+### READ
+
+SELECT * FROM CUSTOMER WHERE customer_id = 1;
+
+### UPDATE
+
+UPDATE CUSTOMER SET phone_number = '911' WHERE customer_id = 1;
+SELECT * FROM CUSTOMER WHERE customer_id = 1;
+
+### DELETE
+
+DELETE FROM CUSTOMER WHERE customer_id = 1;
+SELECT * FROM CUSTOMER WHERE customer_id = 1;
