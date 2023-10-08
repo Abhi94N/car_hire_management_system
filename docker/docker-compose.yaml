@@ -22,7 +22,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password123
       MYSQL_PASSWORD: password123
-
     ports:
       - '3307:3306'
     volumes:

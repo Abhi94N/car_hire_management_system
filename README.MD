@@ -1,5 +1,71 @@
 # CAR HIRE MANAGEMENT SYSTEM
 
+## ENTITY RELATIONSIP DIAGRAM AND SQL QUERIES:
+
+1. Navigate to `queries/` to view SQL queries for Entity RELATIONSHIP Diagram
+
+2. View `CAR HIRE MANAGEMENT SYSTEM ENTITY RELATIONSHIP DIAGRAM` Below with cardinality reasoning
+
+- **Cardinality Reasoning**
+  - `CUSTOMER TO BOOKING` - A Customer can make multiple bookings and bookings in advance and therefore the cardinality is One-To-Many
+  - `VEHICLE TO BOOKING` - Because a customer can book a vehicle up to 7 days in advance, there can be multiple bookings for a vehicle even if it is not available currently but will be within 7 days.
+  - `BOOKING TO INVOICE` - Each booking relates to an invoice for that booking as the customer can make multiple bookings and have multiple invoices
+  - `CUSTOMER TO INVOICE` - A Customer can have multiple invoices as invoices have a one-to-one relationship to Bookings and therefore each invoice can be generated for a customer
+
+![CAR HIRE MANAGEMENT SYSTEM ENTITY RELATIONSHIP DIAGRAM](Car_Hire_Management_System_ERD.png)
+
+## FLASK API
+
+### File Structure
+
+- `docker` - consists of docker compose file to deploy. See [Deploying with Docker Compose Section](#option-3-docker-compose)
+
+- `queries` - consists of relavent queries seperated by table
+
+- `src` - consists of primary source code
+  - `database` - consists of database related abstract and concrete classes
+    - `database_manager.py` - Abstract Class that contains abstract methods to execute queries
+    - `database_connection.py` - Abstract Class that contiains abstract methods for database connectivity
+    - `mysql_database_connection.py` - Concrete Implementation of MySQL DB connection
+    - `mysql_database_manager.py` - Concrete Implementation of MySQL query exection
+    - `database.py` - leverages Single Responsiblity Principle and is responsible for creation of database connection and management
+- `router` - consits of router files that can be injected into application
+  - `customer_router` - CRUD blueprint routes for Creating, Reading, and Updating, and Deleting customers
+- `.env.example` - envars needed to deploy application
+- `app.py` - initializes flask application and registers router blueprints
+- `Dockerfile` - docker file for flask application
+
+### SOLID Principles
+
+1. **Single Responsiblity Principle**
+
+- `database` module resposnsible for provisioning the database connection and database manager
+- `router` module is responsible for organizing routes and handling HTTP requests
+- `app.py` - responsible for initializing Flask APP and including its dependencies
+
+2. **Open and Closed Princple**
+
+- `routes` module has the capability of adding routes and without interfering with outer routes
+- application changes for database and app.py are minimal
+  - `database` module will only require additional querying functionality but routes are responsible for the query itself
+  - `app.py` - only requires registration of more router blueprints
+
+3. **Liskov Substitiion Principle**
+
+- can create multiple subclasses of `database manager` and `database connection` classes to support multiple database options
+- subclasses are compliant with the abstract class and can be replaced in a seamless manner
+
+4. **Interface Segregation Princple**
+
+- Each module consists of code such as abstract classes and concrete classes that they require
+
+5. **Dependency Inversion Principle**
+
+- code is dependent on abstractions such as Blueprints and database manager and connection abstract classes
+- `routers` depend on abstract database manager but does not require the implementation details
+- Can create additional implementation of various databases as long as they follow the abstract classes
+- routes can be passed in to `app.py` by specifying its blueprints and can be switched out as `app.py` does not need to know implementation details
+
 ## How To Deploy
 
 ### Option 1

@@ -1,1 +1,1 @@
-from .router import customer_router
+from .customer_router import customer_router

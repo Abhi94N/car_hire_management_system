@@ -6,7 +6,7 @@ CREATE TABLE CUSTOMER (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     phone_number VARCHAR(20) NOT NULL UNIQUE,
-    email VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE
 );
 
 SELECT * FROM CUSTOMER;
@@ -18,6 +18,7 @@ SELECT * FROM CUSTOMER;
 ### CREATE
 
 INSERT INTO CUSTOMER (name, phone_number, email) VALUES ('Abhilash Nair', '404-202-5249', "abhilashnair1994@gmail.com");
+INSERT INTO CUSTOMER (name, phone_number, email) VALUES ('Fred Bob', '777-777-777', "FredBob@gmail.com");
 
 ### READ
 
