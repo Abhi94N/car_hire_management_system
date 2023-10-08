@@ -1,13 +1,30 @@
 from flask import Flask, request, jsonify
-from database.mysql_database import MySQLDatabase
-from dotenv import load_dotenv
-import os 
 
+from dotenv import load_dotenv
 load_dotenv()
+
+from database import MySQLDatabaseManager, MySQLDatabaseConnection
+import os
+
+mysql_config = {
+    'host': os.environ.get('MYSQL_HOST'),
+    'user': os.environ.get('MYSQL_USER'),
+    'port': os.environ.get('MYSQL_PORT'),
+    'password': os.environ.get('MYSQL_PASSWORD'),
+    'database': os.environ.get('MYSQL_DB'),
+}
+
+
+db_connection = MySQLDatabaseConnection(**mysql_config)
+
+
+db = MySQLDatabaseManager(db_connection)
+
+
 app = Flask(__name__)
 
 
-db = MySQLDatabase()
+
 
 @app.route('/customers', methods=['POST'])
 def create_customer():

@@ -1,29 +1,13 @@
-import os
 import mysql.connector
+from .database_manager import DatabaseManager
 
-class MySQLDatabase:
-    def __init__(self):
-        self.conn = self.create_db_connection()
+class MySQLDatabaseManager(DatabaseManager):
+    def __init__(self, connection):
+        self.connection = connection
 
-    def create_db_connection(self):
-        mysql_config = {
-            'host': os.environ.get('MYSQL_HOST'),
-            'user': os.environ.get('MYSQL_USER'),
-            'port': os.environ.get('MYSQL_PORT'),
-            'password': os.environ.get('MYSQL_PASSWORD'),
-            'database': os.environ.get('MYSQL_DB'),
-        }
-
-        try:
-            conn = mysql.connector.connect(**mysql_config)
-            print("MySQL connection successful!")
-            return conn
-        except mysql.connector.Error as err:
-            print(f"MySQL connection error: {err}")
-    
     def execute_query(self, query, values=None, return_last_row_id=False):
         try:
-            cursor = self.conn.cursor()
+            cursor = self.connection.conn.cursor()
             if values:
                 cursor.execute(query, values)
             else:
@@ -34,22 +18,23 @@ class MySQLDatabase:
             else:
                 lastrowid = None
 
-            self.conn.commit()
+            self.connection.conn.commit()
             cursor.close()
 
             return True, lastrowid
+
         except mysql.connector.Error as e:
             error_code = e.errno
             if error_code == 1062:
                 return False, "Duplicate entry error: This record already exists."
             else:
                 print(f"Error executing query: {e}")
-                self.conn.rollback()
+                self.connection.conn.rollback()
                 return False, str(e)
 
     def fetch_one(self, query, values=None):
         try:
-            cursor = self.conn.cursor()
+            cursor = self.connection.conn.cursor()
             if values:
                 cursor.execute(query, values)
             else:
@@ -57,5 +42,6 @@ class MySQLDatabase:
             result = cursor.fetchone()
             cursor.close()
             return result
+
         except Exception as e:
             return str(e)
