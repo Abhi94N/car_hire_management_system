@@ -22,6 +22,8 @@
 
 - `queries` - consists of relavent queries seperated by table
 
+- `postman` - consists of json export of car hire management system collection
+
 - `src` - consists of primary source code
   - `database` - consists of database related abstract and concrete classes
     - `database_manager.py` - Abstract Class that contains abstract methods to execute queries
