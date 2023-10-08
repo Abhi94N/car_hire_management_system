@@ -1,8 +1,18 @@
 version: '1'
 
 services:
+  mysql-server:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password123
+      MYSQL_PASSWORD: password123
+
+    ports:
+      - '3307:3306'
+    volumes:
+      - ./../queries/CREATE_DATABASE.sql:/docker-entrypoint-initdb.d/CREATE_DATABASE.sql
   car_hire_management:
-    image: abhi94n/car_hire_management:latest
+    image: abhi94n/car_hire_management:test
     environment:
       FLASK_DEBUG: '1'
       MYSQL_HOST: host.docker.internal
@@ -16,17 +26,6 @@ services:
       - '5000:5000'
     depends_on:
       - mysql-server
-
-  mysql-server:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: password123
-      MYSQL_PASSWORD: password123
-    ports:
-      - '3307:3306'
-    volumes:
-      - ./../queries/CREATE_DATABASE.sql:/docker-entrypoint-initdb.d/CREATE_DATABASE.sql
-
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:

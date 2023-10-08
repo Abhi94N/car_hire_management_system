@@ -203,6 +203,17 @@
 
 - `docker compose up`
 
-3. Stop and remove containers
+3. Wait until the init script runs. Completion will look something like below
+
+- `docker-mysql-server-1         | 2023-10-08 04:35:31+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.`
+
+4. Find and restart the `car_hire_management` container in order for it to connect to the database
+
+- list containers
+  - `docker ps`
+- restart the docker container
+  - `docker restart {container_id_or_name}`
+
+5. Stop and remove container
 
 - `docker compose down`
