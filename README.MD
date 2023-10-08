@@ -84,7 +84,7 @@
 #### Start up PHP My Admin to access database via GUI
 
 1. Run the phpmyadmin and link mysql-server container
-   `docker run --name some-phpmyadmin -d --link mysql-server:db -p 8080:80 phpmyadmin/phpmyadmin`
+   `docker run --name phpmyadmin -d --link mysql-server:db -p 8080:80 phpmyadmin/phpmyadmin`
 
 2. Navigate to phpmyadmin by going to `localhost:8080`
 
@@ -165,7 +165,7 @@
 #### Start up PHP My Admin to access database via GUI
 
 1. Run the phpmyadmin and link mysql-server container
-   `docker run --name some-phpmyadmin -d --link mysql-server:db -p 8080:80 phpmyadmin/phpmyadmin`
+   `docker run --name phpmyadmin -d --link mysql-server:db -p 8080:80 phpmyadmin/phpmyadmin`
 
 2. Navigate to phpmyadmin by going to `localhost:8080`
 
