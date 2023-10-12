@@ -12,7 +12,7 @@ services:
     volumes:
       - ./../queries/CREATE_DATABASE.sql:/docker-entrypoint-initdb.d/CREATE_DATABASE.sql
   car_hire_management:
-    image: abhi94n/car_hire_management:test
+    image: abhi94n/car_hire_management:latest
     environment:
       FLASK_DEBUG: '1'
       MYSQL_HOST: host.docker.internal
