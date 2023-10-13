@@ -10,3 +10,37 @@ CREATE TABLE CUSTOMER (
     phone_number VARCHAR(20) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE
 );
+
+DROP TABLE IF EXISTS VEHICLE;
+CREATE TABLE VEHICLE (
+    vehicle_id INT AUTO_INCREMENT PRIMARY KEY,
+    make VARCHAR(100) NOT NULL,
+    model VARCHAR(100) NOT NULL,
+    seats TINYINT NOT NULL,
+    category  ENUM('Small Car', 'Family Car', 'Van') NOT NULL,
+    year YEAR NOT NULL,
+    registration_number VARCHAR(20) UNIQUE NOT NULL
+);
+
+DROP TABLE IF EXISTS BOOKING;
+CREATE TABLE BOOKING (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL, 
+    vehicle_id INT NOT NULL,  
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id),
+    FOREIGN KEY (vehicle_id) REFERENCES VEHICLE(vehicle_id),
+    date_of_hire DATE,
+    date_of_return DATE
+);
+
+DROP TABLE IF EXISTS INVOICE;
+CREATE TABLE INVOICE (
+    invoice_id INT AUTO_INCREMENT PRIMARY KEY,
+    booking_id INT NOT NULL UNIQUE,
+    customer_id INT NOT NULL,
+    invoice_date DATE NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    payment_status ENUM('Paid', 'Unpaid') NOT NULL,
+    FOREIGN KEY (booking_id) REFERENCES BOOKING(booking_id),
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)
+);

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "aecb4a6c-aa4d-45d1-bd4b-7f5117e9e496",
+		"_postman_id": "60adfb62-22b4-4bff-a4a6-53b8eb752a0a",
 		"name": "CAR_HIRE_MANAGEMENT",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14219079"
+		"_exporter_id": "1552391"
 	},
 	"item": [
 		{
@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Fred John\",\r\n    \"phone_number\": \"727-787-7777\",\r\n    \"email\": \"Fred@Johsn.com\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Abhi Nair\",\r\n    \"phone_number\": \"404-202-5249\",\r\n    \"email\": \"abhilashnair1994@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -27,12 +27,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/customers",
+					"raw": "localhost:5000/api/customers",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
+						"api",
 						"customers"
 					]
 				}
@@ -63,21 +64,22 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:6000/customers/16",
+					"raw": "localhost:5000/api/customers/2",
 					"host": [
 						"localhost"
 					],
-					"port": "6000",
+					"port": "5000",
 					"path": [
+						"api",
 						"customers",
-						"16"
+						"2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Delete Customer",
+			"name": "Get Customers",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -100,12 +102,338 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:6000/customers/1",
+					"raw": "localhost:5000/api/customers",
 					"host": [
 						"localhost"
 					],
-					"port": "6000",
+					"port": "5000",
 					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vehicles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/vehicles",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vehicle",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/vehicles/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/booking/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"booking",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Vehicle",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"make\": \"hyundai\",\r\n    \"model\": \"sonata\",\r\n    \"seats\": \"5\",\r\n    \"category\": \"Family Car\",\r\n    \"year\": 2021,\r\n    \"registration_number\":  \"CGX1280\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/vehicles/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Vehicle",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"make\": \"hyundai\",\r\n    \"model\": \"sonata\",\r\n    \"seats\": \"5\",\r\n    \"category\": \"Family Car\",\r\n    \"year\": 2021,\r\n    \"registration_number\":  \"CGX1280\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/vehicles/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_id\": 2,  // Replace with a valid customer_id\r\n    \"vehicle_id\": 1,  // Replace with a valid vehicle_id\r\n    \"date_of_hire\": \"2023-10-13\",  // Replace with the desired hire date\r\n    \"date_of_return\": \"2023-10-20\"  // Replace with the desired return date\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/booking/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Booking Report",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"make\": \"hyundai\",\r\n    \"model\": \"sonata\",\r\n    \"seats\": \"5\",\r\n    \"category\": \"Family Car\",\r\n    \"year\": 2021,\r\n    \"registration_number\":  \"CGX1280\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/booking/daily_report",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"booking",
+						"daily_report"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Vehicle",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/vehicles/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"vehicles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/customers/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
 						"customers",
 						"1"
 					]
@@ -134,14 +462,15 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:5000/customers/6",
+					"raw": "localhost:5000/api/customers/1",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
+						"api",
 						"customers",
-						"6"
+						"1"
 					]
 				}
 			},

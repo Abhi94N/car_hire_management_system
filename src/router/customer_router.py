@@ -13,8 +13,16 @@ def get_customers():
     
     customers = db.fetch_all(query)
     if customers:
-        print(customers)
-        return jsonify({"customers": customers})
+        customer_list = []
+        for customer in customers:
+            customer_list.append({
+            "customer_id": customer[0],
+            "email": customer[1],
+            "name": customer[2],
+            "phone_number": customer[3]
+            })
+
+        return jsonify({"customers": customer_list})
     else:
         return jsonify({"error": f"Failed to retrieve customers"}), 422
 
