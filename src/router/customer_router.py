@@ -5,8 +5,22 @@ from flask import Blueprint, request, jsonify
 
 customer_router = Blueprint('customer_router', __name__)
 
+@customer_router.route('/', methods=['GET'])
+def get_customers():
+    query = "SELECT customer_id, email, name, phone_number FROM CUSTOMER"
 
-@customer_router.route('/customers', methods=['POST'])
+
+    
+    customers = db.fetch_all(query)
+    if customers:
+        print(customers)
+        return jsonify({"customers": customers})
+    else:
+        return jsonify({"error": f"Failed to retrieve customers"}), 422
+
+
+
+@customer_router.route('/', methods=['POST'])
 def create_customer():
     
     data = request.json
@@ -31,7 +45,7 @@ def create_customer():
             return jsonify({"error": "Failed to add customer"}), 500
 
 
-@customer_router.route('/customers/<int:customer_id>', methods=['GET'])
+@customer_router.route('/<int:customer_id>', methods=['GET'])
 def get_customer(customer_id):
     query = "SELECT * FROM CUSTOMER WHERE customer_id = %s"
     values = (customer_id,)
@@ -51,7 +65,7 @@ def get_customer(customer_id):
         return jsonify({"error": f"Failed to retrieve customer with id {customer_id}"}), 404
 
 
-@customer_router.route('/customers/<int:customer_id>', methods=['PUT'])
+@customer_router.route('/<int:customer_id>', methods=['PUT'])
 def update_customer(customer_id):
     data = request.json
     name, email, phone_number = data.get('name'), data.get('email'), data.get('phone_number')
@@ -82,7 +96,7 @@ def update_customer(customer_id):
     else:
         return jsonify({"error": result}), 422
     
-@customer_router.route('/customers/<int:customer_id>', methods=['DELETE'])
+@customer_router.route('/<int:customer_id>', methods=['DELETE'])
 def delete_customer(customer_id):
     query = "DELETE FROM CUSTOMER WHERE customer_id = %s"
     values = (customer_id,)

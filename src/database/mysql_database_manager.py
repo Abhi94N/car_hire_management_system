@@ -45,3 +45,17 @@ class MySQLDatabaseManager(DatabaseManager):
 
         except Exception as e:
             return str(e)
+
+    def fetch_all(self, query, values=None):
+        try:
+            cursor = self.connection.conn.cursor()
+            if values:
+                cursor.execute(query, values)
+            else:
+                cursor.execute(query)
+            result = cursor.fetchall()
+            cursor.close()
+            return result
+
+        except Exception as e:
+            return str(e)

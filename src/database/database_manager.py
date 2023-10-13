@@ -11,3 +11,7 @@ class DatabaseManager(ABC):
     @abstractmethod
     def fetch_one(self, query, values=None):
         pass
+
+    @abstractmethod
+    def fetch_all(self, query, values=None):
+        pass

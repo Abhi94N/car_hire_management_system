@@ -76,7 +76,7 @@
 
 1. Run the mysql container
 
-- `docker run --name mysql-server --publish 127.0.0.1:3307:3306 -e MYSQL_ROOT_PASSWORD=password123 -e MYSQL_PASSWORD=password123 -d mysql:latest`
+- `docker run --name mysql-server --publish 127.0.0.1:3306:3306 -e MYSQL_ROOT_PASSWORD=password123 -e MYSQL_PASSWORD=password123 -d mysql:latest`
   - substutite `127.0.0.1` with your host
 
 2. Exec into container
@@ -94,7 +94,7 @@
 
 4. create new database
 
-- `DROP DATABASE IF_EXISTS CAR_HIRE_MANAGEMENT;`
+- `DROP DATABASE IF EXISTS CAR_HIRE_MANAGEMENT;`
 - `CREATE DATABASE CAR_HIRE_MANAGEMENT;`
 
 5. Copy contents in directory `queries/CUSTOMER_TABLE.sql`
