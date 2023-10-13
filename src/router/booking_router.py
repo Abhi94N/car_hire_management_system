@@ -73,7 +73,7 @@ def create_booking():
     if date_of_hire > advance_booking_limit:
         return jsonify({"error": "Booking made too far in advance. You can book up to 7 days in advance."}), 400
     # check if vehicle is available for given date
-    existing_booking =  db.fetch_one("SELECT booking_id FROM BOOKING WHERE vehicle_id = %s AND date_of_return < %s", (vehicle_id, date_of_hire))
+    existing_booking = db.fetch_one("SELECT booking_id FROM BOOKING WHERE vehicle_id = %s AND (%s < date_of_return AND %s > date_of_hire)", (vehicle_id, date_of_hire, date_of_return))
 
     # create a booking if the existing booking doesn't exist
     if not existing_booking:
@@ -93,4 +93,4 @@ def create_booking():
 
         return jsonify({"message": "Booking created successfully", "booking_id": booking_id}), 201
     else:
-        return jsonify({"error": "Vehicle not available for booking within the 7-day advance booking window"}), 400
+        return jsonify({"error": "Vehicle not available for booking"}), 400
